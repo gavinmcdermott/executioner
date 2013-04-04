@@ -1,50 +1,38 @@
 var Reactive = function() {
   var value;
-  var routines = new currentRoutine.Set();
+  var routines = new routine.Set();
 
   this.get = function() {
-    routines.add(routine);
+    // whatever routine is currently going on
+    // is dependent upon this get
+    routines.push(routine);
     return value;
   };
 
   this.set = function(input) {
-    value === input || routines.rerun();
+    value === input || routines.invalidate();
     return (value = input);
   };
+
 };
 
+// debugger;
 // consumption code
-var name = new Reactive();
+var llama = new Reactive();
 
-name.set('Marcus');
+llama.set('Marcus');
 
-alert(name.get());
+alert(llama.get());
 // alerts 'Marcus'
 
-name.set('Gavin');
+llama.set('Gavin');
 // nothing happens;
 
 // reactivity is set up here
-currentRoutine.subroutine(function(){
-  currentRoutine.subroutine(function(){
-    alert(age.get());
-  });
-  alert(name.get());
+routine.sub(function(){
+  alert(llama.get());
 });
 // alerts 'Gavin'
 
-name.set('Howard');
+llama.set('Howard');
 // alerts 'Howard'
-
-
-// render = function() {
-//   var context = new Context.Context();
-//   context.run(function() {
-//     renderData();
-//   });
-//   context.onInvalidate(function(){
-//     render();
-//   });
-// };
-
-// render();

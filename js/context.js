@@ -2,12 +2,12 @@
 
   var Routine = function(){
     var routine = {};
-    routine.subroutine = function(fn){
-      var previous = window.currentRoutine;
+    routine.sub = function(fn){
+      var previous = window.routine;
 
       var execute = function(){
-        if(invalidated){ return; }
-        var subroutine = window.currentRoutine = Routine();
+        if (invalidated) { return; }
+        var subroutine = window.routine = Routine();
         var invalidated;
         subroutine.invalidate = function(){
           execute();
@@ -17,7 +17,7 @@
       };
       execute();
 
-      window.currentRoutine = previous;
+      window.routine = previous;
     };
 
     routine.Set = Set;
@@ -26,12 +26,13 @@
 
   var Set = function(){
     var set = [];
-    set.rerun = function(){
-      _.invoke(set, 'call');
+    set.invalidate = function(){
+      _.invoke(set, 'invalidate');
     };
     return set;
   };
 
-  window.currentRoutine = Routine();
+  window.routine = Routine();
+  window.routine.invalidate = function(){};
 
 }());
