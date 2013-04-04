@@ -1,6 +1,6 @@
 var Reactive = function() {
   var value;
-  var routines = new currentRoutine.Set();
+  var routines = new routine.Set();
 
   this.get = function() {
     routines.add(routine);
@@ -14,37 +14,18 @@ var Reactive = function() {
 };
 
 // consumption code
-var name = new Reactive();
+var person = new Reactive();
 
-name.set('Marcus');
-
-alert(name.get());
-// alerts 'Marcus'
-
-name.set('Gavin');
-// nothing happens;
+person.set('gavin');
+person.get();
+person.set('howard');
+person.get(); //returns howard
 
 // reactivity is set up here
-currentRoutine.subroutine(function(){
-  currentRoutine.subroutine(function(){
-    alert(age.get());
-  });
-  alert(name.get());
-});
-// alerts 'Gavin'
-
-name.set('Howard');
-// alerts 'Howard'
-
-
-// render = function() {
-//   var context = new Context.Context();
-//   context.run(function() {
-//     renderData();
+// routine.subroutine(function(){
+//   routine.subroutine(function(){
+//     alert(age.get());
 //   });
-//   context.onInvalidate(function(){
-//     render();
-//   });
-// };
+//   alert(name.get());
+// });
 
-// render();
