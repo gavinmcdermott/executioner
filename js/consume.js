@@ -16,7 +16,6 @@ var Reactive = function() {
 
 };
 
-// debugger;
 // consumption code
 var llama = new Reactive();
 
@@ -35,5 +34,7 @@ routine.sub(function(){
 // alerts 'Gavin'
 
 llama.set('Howard');
+llama.set('Howard');
 // alerts 'Howard'
+llama.set('Dingo');
 

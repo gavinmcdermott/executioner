@@ -10,8 +10,10 @@
         var subroutine = window.routine = Routine();
         var invalidated;
         subroutine.invalidate = function(){
-          execute();
-          invalidated = true;
+          setTimeout(function() {
+            execute();
+            invalidated = true;
+          }, 0);
         };
         fn();
       };
